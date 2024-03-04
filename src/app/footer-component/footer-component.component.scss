@@ -1,0 +1,27 @@
+.navbar {
+    background-color: rgb(251, 250, 250);
+}
+
+.powered-by a {
+    color: #0b6dce;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.powered-by a:hover{
+    text-decoration: underline;
+}
+
+.img-footer {
+    margin-right: 30px;
+}
+
+.img-playstore {
+    height: 63px;
+    cursor: pointer;
+}
+
+.img-appstore {
+    height: 40px;
+    cursor: pointer;
+}

@@ -1,0 +1,141 @@
+<div class="w-100">
+  <div class="d-flex flex-column">
+    <div
+      class="d-flex justify-content-between align-content-center mb-4 mt-4 heading-row">
+
+      <div class="d-flex">
+        <h1 class="me-3 m-2 fw-bold">Employees</h1>
+        <div class="btn-group m-1" role="group"
+          style="justify-content: space-between;">
+          <button type="button"
+            class="btn btn-outline-primary bg-white">Last Year</button>
+          <button type="button"
+            class="btn btn-outline-primary bg-white">This Year</button>
+          <button type="button"
+            class="btn btn-outline-primary bg-white">Next Year</button>
+        </div>
+      </div>
+      <div class="d-flex align-content-end">
+        <button type="button"
+          class="btn btn-second-row-group3 btn-lg m-2 fs-6"><i
+            class="fas fa-filter"></i> Show Filter</button>
+        <button type="button"
+          class="btn btn-second-row-group2 btn-lg m-2 fs-6"><i
+            class="fas fa-file-import"></i> Import Employees</button>
+        <button routerLink="/addEmployee" type="button"
+          class="btn btn-second-row-group1 btn-lg m-2 fs-6">
+          <i class="fas fa-user-plus"></i> Add Employees
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column">
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+         <!-- Checkbox Column -->
+         <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox class="flex-shrink-0" (change)="$event ? toggleAllRows() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              [aria-label]="checkboxLabel()">
+            </mat-checkbox> Employee
+          </th>
+          <td mat-cell *matCellDef="let row" class="container align-items-center">
+            <mat-checkbox (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+            <mat-card class="user-card">
+              <mat-card-content class="user-card2">
+                <div class="d-flex">
+                  <img
+                    src="https://s3-alpha-sig.figma.com/img/95f5/2344/c16f5fbb72f0c1661cb8e93ea563bd10?Expires=1710115200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fNcNA6sLCWhSRkdxNO6nPWGGjFs68Tc2V6T4-FaJT1O~kOSxwzoq3U8SyvmqvQRmNTS7EAQnNf0p-Ee7-7f3pQztGykUsha3sY75TlmlWCl3bv8h3rsjkMcd349vNyhA0o2mTiBc~KqNFpOtUY6xui7kWnCfsm1gLJ3hX3gJfTyrOMxycUJyLQzYleRTIM3jVHemoARhaefXVePPq0HobtuwP-EwRuMQi~ESwbB9~KI-KF3EwdaJnCswzSDdSj2HvuSvP8~Ta8bqe6DbErY2j9j24tJD4DHnGA-SbIIIy-twMBAycEFbpPnaNnnNhPclxqiOViO~LivRxe22nibmCA__"
+                    class="rounded-circle m-2" style="width: 40px;height: 40px"
+                    alt="Avatar" />
+                  <div class="d-flex flex-column card-text m-1">
+                    <p class="ml-2 card-name">{{row.name}}</p>
+                    <p>02 jan,2022 - 02 jan,2023</p>
+                  </div>
+                </div>
+
+              </mat-card-content>
+            </mat-card>
+          </td>
+        </ng-container>
+
+        <!-- Approvers Column -->
+        <ng-container matColumnDef="approvers">
+          <th mat-header-cell *matHeaderCellDef> Approvers </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+        </ng-container>
+
+        <!-- Team Column -->
+        <ng-container matColumnDef="team">
+          <th mat-header-cell *matHeaderCellDef> Team </th>
+          <td mat-cell *matCellDef="let element"> Marketing </td>
+        </ng-container>
+
+        <!-- Location Column -->
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef> Location </th>
+          <td mat-cell *matCellDef="let element"> United States </td>
+        </ng-container>
+
+        <!-- Leave Policy Column -->
+        <ng-container matColumnDef="leave policy">
+          <th mat-header-cell *matHeaderCellDef> Leave Policy </th>
+          <td mat-cell *matCellDef="let element"> Default Policy </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element"> Active </td>
+        </ng-container>
+
+        <!-- Days Column -->
+        <ng-container matColumnDef="days">
+          <th mat-header-cell *matHeaderCellDef> Days </th>
+          <td mat-cell *matCellDef="let element"> 0/5 </td>
+        </ng-container>
+
+        <!-- Hours Column -->
+        <ng-container matColumnDef="hours">
+          <th mat-header-cell *matHeaderCellDef> Hours </th>
+          <td mat-cell *matCellDef="let element"> 5/36 </td>
+        </ng-container>
+
+        <!-- Work Schedule Column -->
+        <ng-container matColumnDef="work schedule">
+          <th mat-header-cell *matHeaderCellDef> Work Schedule </th>
+          <td mat-cell *matCellDef="let element"><i class="fa-solid fa-hourglass-half"></i> Fixed Hours
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element" class="action-cell">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 15 20" class="action-icon">
+              <path
+                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+            </svg>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          (click)="selection.toggle(row)">
+        </tr>
+      </table>
+
+
+      <mat-paginator [length]="200" [pageSizeOptions]="[5, 10, 100]" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

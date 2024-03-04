@@ -1,0 +1,141 @@
+<a routerLink="/"><i class="fas fa-arrow-left back-text m-1"></i>Back to
+    employee
+    overview</a>
+<h1 class="m-1 mb-2">Add Employee</h1>
+
+<div class="container-fluid bg-white">
+    <h2 class="m-2">General Settings</h2>
+    <div class="d-flex">
+        <p class="invite-text m-2 col-3">Invite By:</p>
+        <mat-radio-group aria-label="Select an option" class="col-8">
+            <mat-radio-button value="1" class="custom-radio-1">By
+                Email</mat-radio-button>
+            <mat-radio-button value="2" class="custom-radio-2">By
+                Mobile</mat-radio-button>
+            <mat-radio-button value="3" class="custom-radio-3">Managed by
+                admin</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="d-flex">
+        <p class="invitation m-2 col-3">Send invitation:</p>
+        <div class="form-check form-switch">
+            <input class="form-check-input col-8" type="checkbox" role="switch"
+                id="flexSwitchCheckChecked">
+        </div>
+    </div>
+    <div class="d-flex">
+        <p class="email-text m-2 col-3">Email Address:</p>
+        <div class="input-group1 flex-nowrap ">
+            <input type="text" class="form-control"
+                aria-describedby="addon-wrapping">
+        </div>
+    </div>
+    <div class="d-flex">
+        <p class="employee-name-text m-2 col-3">Employee's Name:</p>
+        <div class="input-group2 flex-nowrap">
+            <input type="text" class="form-control"
+            [(ngModel)]="employeeName"  aria-describedby="addon-wrapping">
+        </div>
+    </div>
+    <div class="d-flex">
+        <p class="date-text m-2 col-3">Joining Date:</p>
+        <form class="row row-cols-sm-auto">
+            <div class="col-12">
+                <div class="input-group date-picker">
+                    <input
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        name="dp"
+                        [(ngModel)]="model"
+                        ngbDatepicker
+                        #d="ngbDatepicker"
+                    />
+                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa-solid fa-calendar-days"></i></button>
+                </div>
+            </div>
+        </form>
+        
+        <hr />
+    </div>
+    <div class="d-flex mt-2">
+        <h2 class="m-2">Advanced Settings</h2>
+    </div>
+    <div class="d-flex m-2">
+        <p class="location-text col-3">Location:</p>
+        <ng-select class="ng-select1" [items]="locations"
+            [addTag]="addTagFn"
+            [hideSelected]="true"
+            [multiple]="true"
+            bindLabel="name"
+            [(ngModel)]="selectedLocations">
+        </ng-select>
+    </div>
+    <div class="d-flex">
+        <p class="team-text m-2 col-3">Team:</p>
+        <div class="d-flex flex-column">
+            <ng-select class="ng-select2" [items]="teams"
+                [addTag]="addTagFn"
+                [hideSelected]="true"
+                [multiple]="true"
+                bindLabel="name"
+                [(ngModel)]="selectedTeams">
+            </ng-select>
+            <p class="add-team-text"><i class="fas fa-circle-plus"></i>Add New
+                Team</p>
+        </div>
+    </div>
+    <div class="d-flex m-2">
+        <mat-radio-button value="4" class="custom-radio-4">Follow employee's
+            location policy:</mat-radio-button>
+        <p class="default-policy fw-bold">Default policy</p>
+    </div>
+    <div class="d-flex m-2">
+        <mat-radio-button value="5" class="custom-radio-5 col-3">Leave
+            policy:</mat-radio-button>
+        <ng-select class="ng-select3" [items]="fetchedLeavePolicies"
+            [addTag]="addTagFn"
+            [hideSelected]="true"
+            [multiple]="true"
+            bindLabel="type"
+            [(ngModel)]="leavePolicies">
+        </ng-select>
+    </div>
+    <div class="d-flex">
+        <p class="team-text m-2 col-3">Time zone:</p>
+        <ng-select class="ng-select4" [items]="timeZones"
+            [addTag]="addTagFn"
+            [hideSelected]="true"
+            [multiple]="true"
+            bindLabel="name"
+            [(ngModel)]="selectedTimeZones">
+        </ng-select>
+    </div>
+    <div class="d-flex">
+        <p class="team-text m-2 col-3">Day / comp off approval:</p>
+        <div class="d-flex flex-column align-content-start">
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="6" class="custom-radio-6">1 step
+                    approval</mat-radio-button>
+                <mat-radio-button value="7" class="custom-radio-7">2 step
+                    approval</mat-radio-button>
+            </mat-radio-group>
+            <p class="approval-text">Here you can select the user's approver.
+                You can either choose a specific person, or the <br>
+                approver of the user's team will be selected by default.</p>
+        </div>
+    </div>
+    <div class="d-flex">
+        <p class="team-text m-2 col-3">Approver:</p>
+        <ng-select class="ng-select5 mb-3" [items]="approvers"
+            [addTag]="addTagFn"
+            [hideSelected]="true"
+            [multiple]="true"
+            bindLabel="name"
+            [(ngModel)]="selectedApprovers">
+        </ng-select>
+    </div>
+    <div class="d-flex justify-content-end">
+        <button routerLink="/" type="button" class="btn cancel-button">Cancel</button>
+        <button type="button" class="btn save-button" (click)="saveEmployee()">Save</button>
+    </div>
+</div>

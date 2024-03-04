@@ -1,0 +1,36 @@
+.company-name {
+    font-family: 'proxima-nova', sans-serif;
+    letter-spacing: 0.20000000298023224px;
+}
+
+.navbar .company-text {
+    font-family: 'proxima-nova', sans-serif;
+    letter-spacing: 0.20000000298023224px;
+}
+
+.btn-primary {
+    background-color: #7408b7;
+    border-color: #7408b7;
+    height: 35px;
+    width: 85px;
+    border-radius: 15px;
+
+}
+
+.btn-primary i{
+    color: yellow;
+}
+
+.btn-primary:hover{
+    background-color: #4b0f71;
+}
+
+.support {
+    color: #7408b7;
+    margin-right: 35px;
+    text-decoration: none;
+}
+
+.rounded-circle{
+    cursor: pointer;
+}

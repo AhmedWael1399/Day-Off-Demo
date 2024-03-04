@@ -1,0 +1,37 @@
+.sidebar{
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar .btn-danger {
+    width: 200px;
+}
+
+.btn-danger:hover{
+    background-color: #842932;
+}
+
+.list-group-item {
+    top: 10px;
+    background: none;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    font-family: 'proxima-nova', sans-serif;
+    cursor: pointer;
+}
+
+.list-group-item:hover{
+    background-color: rgb(109, 106, 106);
+    border-radius: 15px;
+    color: white;
+}
+
+.img-thumbnail {
+    align-items: center;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 70px;
+    background: none;
+    border: none;
+}
